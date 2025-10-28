@@ -2,6 +2,7 @@ import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { User } from 'lucide-react'
 import { UserType } from '@/types/users-type'
+import Link from 'next/link'
 
 export const UserCard = ({ user }: { user: UserType }) => {
     return (
@@ -12,14 +13,14 @@ export const UserCard = ({ user }: { user: UserType }) => {
                     <User />
                 </AvatarFallback>
             </Avatar>
-            <a
+            <Link
                 href={user.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xl font-medium text-blue-600 hover:underline"
             >
                 {user.login}
-            </a>
+            </Link>
         </li>
     )
 }

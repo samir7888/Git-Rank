@@ -3,15 +3,16 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const location = searchParams.get("location");
-  console.log(location);
   const page = searchParams.get("page") || "1";
+  const perPage = 25;
+  const Pages = parseInt(page) * perPage;
 
   if (!location)
     return NextResponse.json({ error: "Missing location" }, { status: 400 });
 
   const url = `https://api.github.com/search/users?q=location:${encodeURIComponent(
     location
-  )}&per_page=100&page=${page}`;
+  )}&per_page=${Pages}`;
   const headers = {
     Authorization: `token ${process.env.GITHUB_TOKEN}`,
     "User-Agent": "GitRank-App",

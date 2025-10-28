@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
-import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { User } from "lucide-react";
 import { UserTable } from "./user-table";
+import { Skeleton } from "./ui/skeleton";
 
 export const NameComponent: React.FC = () => {
     const [name, setName] = React.useState("");
@@ -13,26 +11,34 @@ export const NameComponent: React.FC = () => {
 
 
     const [users, setUsers] = useState([]);
+    const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
 
-    const fetchUsers = async (location: string) => {
+    const fetchUsers = async (location: string, p = 1) => {
         setLoading(true);
-        const res = await fetch(`/api/users?location=${location}`);
+        const res = await fetch(`/api/users?location=${location}&page=${p}`);
         const data = await res.json();
         setUsers(data.users || []);
         setLoading(false);
     };
 
+    // when page changes (via pagination buttons), refetch for the current name
+    useEffect(() => {
+        if (name) {
+            fetchUsers(name, page);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page]);
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const v = e.target.value;
         setName(v);
-
+        setPage(1);
         // debounce updates to the URL
         if (timerRef.current) {
             window.clearTimeout(timerRef.current);
         }
         timerRef.current = window.setTimeout(() => {
-            fetchUsers(v);
+            fetchUsers(v, 1);
         }, 300);
     };
 
@@ -49,13 +55,17 @@ export const NameComponent: React.FC = () => {
                 />
             </div>
 
-            {loading && <p className="ml-4">Loading...</p>}
+            {loading && <Skeleton className="w-full h-14" />}
 
 
 
             {users.length > 0 && (
-                <UserTable data={users} tableHeader={["Rank", "Username", "Score"]} />
-
+                <UserTable
+                    data={users}
+                    tableHeader={["Rank", "Username", "Score"]}
+                    onNext={() => setPage(p => p + 1)}
+                    loading={loading}
+                />
             )}
         </div>
     );
