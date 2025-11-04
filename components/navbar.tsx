@@ -1,13 +1,13 @@
 "use client"
 import { ModeToggle } from './toggle-mode'
 import Link from 'next/link'
+import React from 'react'
 
 const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Compare', href: '/compare' },
 ]
 import { motion } from "motion/react"
-import React from 'react'
 
 const Navbar = () => {
     const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
