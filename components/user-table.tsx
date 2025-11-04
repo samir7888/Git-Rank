@@ -2,7 +2,6 @@ import {
     Table,
     TableBody,
     TableCell,
-    TableFooter,
     TableHead,
     TableHeader,
     TableRow,
@@ -13,6 +12,7 @@ import { Badge, User } from "lucide-react";
 import { UserType } from "@/types/users-type";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
+import { motion } from "motion/react"
 
 export function UserTable({
     data,
@@ -27,7 +27,7 @@ export function UserTable({
     loading: boolean;
 }) {
     return (
-        <div className="w-full flex flex-col pb-6">
+        <motion.div animate={{ opacity: [0, 1] }} className="w-full flex flex-col pb-6">
 
             <Table>
                 <TableHeader>
@@ -37,7 +37,8 @@ export function UserTable({
                         ))}
                     </TableRow>
                 </TableHeader>
-                <TableBody>
+
+                <TableBody >
                     {data.map((user, i) => (
                         <TableRow
                             key={i}
@@ -79,20 +80,28 @@ export function UserTable({
                     ))}
                 </TableBody>
 
+
             </Table>
             <div className="flex justify-center items-center w-full mx-auto  mt-4">
 
-                {!loading ? (<Button
+                {!loading ? (
+                    <motion.button whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1 }} animate={{ transition: { duration: 0.2 } }}>
 
-                    onClick={onNext}
-                    variant={"default"}
-                >
-                    View More
-                </Button>) : (
+                        <Button
+                            className="cursor-pointer"
+
+                            onClick={onNext}
+                            variant={"default"}
+                        >
+                            View More
+                        </Button>
+
+                    </motion.button>
+                ) : (
                     <Skeleton className="h-10 w-full rounded" />
 
                 )}
             </div>
-        </div>
+        </motion.div>
     );
 }
