@@ -1,9 +1,8 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import CompareBox from './components/compare-box'
-import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { GitHubUser } from '@/types/users-type';
@@ -13,7 +12,6 @@ import MultiSeriesRadar from './components/rador-chart';
 const Comare = () => {
     const [username, setUsername] = React.useState<string | null>(null)
     const [isSelectModalOpen, setIsSelectModalOpen] = React.useState(false);
-    // const [userData, setUserData] = React.useState<GitHubUser | null>(null);
     const [user1, setUser1] = useState<GitHubUser | null>(null);
     const [user2, setUser2] = useState<GitHubUser | null>(null);
     const [selectside, setselectSide] = React.useState<"LEFT" | "RIGHT">("LEFT");
@@ -68,10 +66,10 @@ const Comare = () => {
                 isSelectModalOpen && (
                     <div className='fixed inset-0 bg-black/70  bg-opacity-50 flex items-center justify-center z-50'>
 
-                        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} className='relative p-6 rounded-2xl space-y-6 bg-neutral-100'>
+                        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} className='relative p-6 rounded-2xl space-y-6 dark:bg-neutral-800 bg-neutral-100'>
                             <div className='text-xl text-balance'>Enter username to compare</div>
                             <div className='space-y-4'>
-                                <Input onChange={(e) => setUsername(e.target.value)} className='px-3 py-2 bg-neutral-100 text-xl' />
+                                <Input onChange={(e) => setUsername(e.target.value)} className='px-3 py-2 bg-neutral-100 dark:bg-neutral-700 dark:text-white text-xl' />
                                 <div className='space-x-3'>
 
                                     <Button onClick={() => setIsSelectModalOpen(false)} variant={'ghost'}>Cancel</Button>

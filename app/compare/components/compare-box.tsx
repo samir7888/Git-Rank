@@ -22,7 +22,7 @@ const CompareBox = ({ setIsSelectModalOpen, side, user1, user2 }: Props) => {
 
 
     return (
-        <div className='flex h-[300px] bg-blue-50 rounded-2xl'>
+        <div className='flex h-[300px] bg-blue-50 dark:bg-neutral-800 rounded-2xl'>
             <div className='relative flex flex-col items-center'>
 
                 {user1 ? (
@@ -60,12 +60,12 @@ const CompareBox = ({ setIsSelectModalOpen, side, user1, user2 }: Props) => {
                         <span>No. of Followers</span>
                         <span>{user2?.followers || '-'}</span>
                     </div>
-                    <div className='h-8 flex flex-1 px-2 rounded-2xl justify-between items-center bg-neutral-200'>
+                    <div className='h-8 flex flex-1 px-2 rounded-2xl justify-between items-center bg-neutral-200 dark:bg-neutral-900'>
                         <span>{user1?.public_repos || '-'}</span>
                         <span>No. of Public Repos</span>
                         <span>{user2?.public_repos || '-'}</span>
                     </div>
-                    <div className='h-8 flex flex-1 px-2 rounded-2xl justify-between items-center bg-neutral-100'>
+                    <div className='h-8 flex flex-1 px-2 rounded-2xl justify-between items-center bg-neutral-100 dark:bg-neutral-700'>
                         <span><span>{user1?.public_gists || '-'}</span></span>
                         <span>No. of Gists</span>
                         <span><span>{user2?.public_gists || '-'}</span></span>
