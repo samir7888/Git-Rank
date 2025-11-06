@@ -1,3 +1,4 @@
+import { GitHubUser } from "@/types/users-type";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
@@ -27,7 +28,7 @@ export async function GET(req: Request) {
 
   // Fetch detailed info for each user
   const detailedUsers = await Promise.all(
-    data.items.map(async (user: any) => {
+    data.items.map(async (user: GitHubUser) => {
       const detailRes = await fetch(
         `https://api.github.com/users/${user.login}`,
         {
@@ -44,7 +45,7 @@ export async function GET(req: Request) {
         public_repos: detail.public_repos || 0,
         public_gists: detail.public_gists || 0,
         score:
-          (detail.followers || 0) * 2 +
+          (detail.followers || 0) * 1.5 +
           (detail.public_repos || 0) +
           (detail.public_gists || 0) * 0.5, // scoring formula
       };
