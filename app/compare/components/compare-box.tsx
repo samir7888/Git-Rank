@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 import img from '../../../public/github-username.png'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
@@ -37,11 +37,6 @@ const CompareBox = ({ setIsSelectModalOpen, side, user1, user2 }: Props) => {
                 )}
 
 
-
-
-
-
-
                 {!user1 && <span className='z-10 absolute inset-0 flex items-center justify-center '><Plus className='size-18 text-neutral-500' /></span>}
                 <Button onClick={() => {
                     setIsSelectModalOpen(true);
@@ -53,7 +48,7 @@ const CompareBox = ({ setIsSelectModalOpen, side, user1, user2 }: Props) => {
 
 
             <div className='flex flex-col justify-around'>
-                <h2 className='font-semibold text-2xl'>Select username to compare</h2>
+                <h2 className='font-semibold text-center text-2xl'>Select username to compare</h2>
                 <div className='space-y-3'>
                     <div className='h-8 flex flex-1 rounded-2xl px-2 justify-between items-center bg-neutral-100 dark:bg-neutral-700'>
                         <span>{user1?.followers || '-'}</span>

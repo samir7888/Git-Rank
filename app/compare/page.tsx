@@ -26,7 +26,7 @@ const Comare = () => {
 
         if (side === "LEFT") {
             setUser1(data);
-        } else {
+        } else {    
             setUser2(data);
         }
         setIsSelectModalOpen(false)
@@ -36,7 +36,7 @@ const Comare = () => {
 
     return (
         <div className='flex items-center flex-col space-y-8'>
-            <h1 className='text-5xl font-bold mt-40'>Compare Github Users</h1>
+            <h1 className='text-3xl md:text-5xl text-center font-bold mt-40'>Compare Github Users</h1>
             <CompareBox setIsSelectModalOpen={setIsSelectModalOpen} side={setselectSide} user1={user1} user2={user2} />
 
             {
