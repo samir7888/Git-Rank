@@ -2,7 +2,7 @@ import { NameComponent } from "@/components/name-component";
 
 export default async function Home() {
   return (
-    <div className="min-h-screen space-y-6 md:space-y-12 flex flex-col justify-center items-center">
+    <div className="min-h-screen max-w-3xl mx-auto space-y-6 md:space-y-12 flex flex-col justify-center items-center">
       <div className="mt-40 space-y-12  flex items-center justify-center flex-col">
         <h1 className="text-4xl md:text-7xl text-center font-bold mb-4">Welcome to Gitrank</h1>
         <p className="text-2xl md:text-3xl text-center text-balance text-gray-600">

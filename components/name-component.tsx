@@ -44,14 +44,14 @@ export const NameComponent: React.FC = () => {
 
     return (
         <div className="w-full mx-auto flex flex-col justify-center">
-            <div className="my-24  md:w-xl mx-auto">
+            <div className="my-24 w-full h-20 md:w-xl mx-auto">
 
                 <Input
                     type="text"
                     value={name}
                     onChange={onChange}
                     placeholder="Enter location"
-                    className="border px-4 py-2 rounded flex flex-1 w-full"
+                    className="border focus:outline-none px-4 py-6 font-bold tracking-wider rounded flex flex-1"
                 />
             </div>
 
